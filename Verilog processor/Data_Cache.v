@@ -10,7 +10,7 @@ reg [28:0]setAddress[0:15]; //16 lines
 reg [31:0]setData[0:15];
 
 reg [6:0]i;
-wire [28:0]blockAddress <= addr[31:3]; //tag and index
+wire [28:0]blockAddress = addr[31:3]; //tag and index
 
 always@(blockAddress, inputData, writeData, readData) begin : search
 
@@ -61,4 +61,3 @@ initial begin
 end
 
 endmodule //fullAssoociative
-endmodule 
