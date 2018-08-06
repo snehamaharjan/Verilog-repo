@@ -1,4 +1,4 @@
-module PC_unit(input[31:0] Sign_extend, input Branch, Uncondbranch, check_pc, output [31:0] PC);
+module PC_unit(input[31:0] Sign_extend, input Branch, Uncondbranch, Zero, output [31:0] PC);
 
 
 initial begin
@@ -13,7 +13,7 @@ wire offset <= sign_extend << 2; //LEFT SHIFT 2 OR (4 times sign-extension or of
 
 wire result <= PC + offset;
 
-wire Check_and_Branch <= Branch & check;
+wire Check_and_Branch <= Branch & Zero;
 
 wire Select_x <= Check_and_Branch | Uncondbranch;
 
