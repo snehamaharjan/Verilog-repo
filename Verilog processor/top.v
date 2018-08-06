@@ -1,8 +1,10 @@
 module top;
 
+//input for PC_unit
+reg check; 
 //output for PC_unit
 wire [31:0] PC;
-
+  
 //inputs for Instruction memory - current_PC_output
 
 //outputs for Instruction memory 
