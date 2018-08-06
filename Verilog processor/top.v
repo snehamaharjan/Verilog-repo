@@ -50,13 +50,13 @@ wire [31:0] ALU_Result;
 wire Zero;
 
 //Input for Data Cache
-//ALU_Result- Address is the ALU result
-//Read_data2- Write data gets Read_data2
-//MemWrite
-//MemRead
+reg [31:0] addr;//ALU_Result- Address is the ALU result
+reg [31:0] inputData; //Read_data2- Write data gets Read_data2
+reg writeData;//MemWrite
+reg readData;//MemRead
 
 //output for Data Cache
-wire [31:0] ReadData; 
+wire [31:0] data; 
 
 //input for Multiplexer1 that selects from 5-bit inputs
 reg [4:0] Input1;
