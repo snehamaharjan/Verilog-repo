@@ -1,7 +1,4 @@
-
-// module Data_Cache(input[31:0] ALU_Result, Read_data2, input MemWrite, MemRead, output reg[31:0] ReadData);
-
-module fullAssociative( 
+module Data_Cache( 
 output reg [31:0]data,  // Read data
 input [31:0]addr,    //ALU_Result 
 input [31:0]inputData,  //Write data or Read_data2
