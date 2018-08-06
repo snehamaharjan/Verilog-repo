@@ -39,7 +39,7 @@ initial begin
      $monitor ("Reg2Loc: ", Reg2Loc, " Uncondbranch: ", Uncondbranch, " Branch: ", Branch, " MemRead: ", MemRead " MemtoReg: ", MemtoReg, " MemWrite: ", MemWrite, " ALUScr: ", ALUScr, " RegWrite: ", RegWrite,
               "Register 1: %d", Read_register1,"Instruction 2: %d",Instruction_set2, "Instruction 3: %d",Instruction_set3, "Instruction 4: %d", Instruction_set4, "Instruction: ", check, "Inmediate: %d", Sign_extend);
 // outputs for Multiplexer1 
-     $monitor ( "ALU input: %d", Decocer_mux_output); 
+     $monitor ( "ALU input: %d", Decoder_Mux_output); 
 // outputs for Operand Prep 
      $monitor( "read data 1: %d", Read_data1, "read data 2: %d", Read_data2); 
 // outputs for ALU 
