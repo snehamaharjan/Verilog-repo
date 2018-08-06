@@ -56,34 +56,34 @@ ALU_Result = Decoder_Mux_output;
 Zero = 1'b0;
 end
 4'b0111: //CBZ- Compare and branch on zero
-if (Decoder_Mux_output == 32'b00000000000000000000000000000000) 
+  if (Decoder_Mux_output == 32'b0) 
 begin
 Zero = 1'b1;
-ALU_Result = 32'b00000000000000000000000000000000;
+ALU_Result = 32'b0;
 end
 
 else 
 begin
 Zero = 1'b0;
-ALU_Result = 32'b00000000000000000000000000000000;
+ALU_Result = 32'b0;
 end
 
 4'b0001: //CBNZ- Compare and branch IF not zero
-if (Decoder_Mux_output != 32'b00000000000000000000000000000000) 
+  if (Decoder_Mux_output != 32'b0) 
 begin
 Zero = 1'b1;
-ALU_Result = 32'b00000000000000000000000000000000;
+ALU_Result = 32'b0;
 end
 
 else 
 begin
 Zero = 1'b0;
-ALU_Result = 32'b00000000000000000000000000000000;
+ALU_Result = 32'b0;
 end
 
 default: 
 begin
-ALU_Result = 32'b00000000000000000000000000000000;
+ALU_Result = 32'b0;
 Zero = 1'b0;
 end
 endcase 
