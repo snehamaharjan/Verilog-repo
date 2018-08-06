@@ -7,7 +7,11 @@ wire [31:0] Read_data2;
 for (i=0; i<32; i++) begin
 Register_array[i] <= 0;
 end
-
+  
+  Register_array[20] <= 0; 
+  Register_array[25] <= 15;
+  Register_array[3] <= 3;
+  
 always (*) begin
 
 Read_data1 <= Read_array[Read_register1];
