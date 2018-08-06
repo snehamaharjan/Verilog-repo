@@ -1,10 +1,13 @@
-module Operand_Prep(input[4:0] Read_register1, Read_register2, Instruction_set3, input[31:0] Write_data, Instruction_set4, input RegWrite, output reg[31:0] Read_data1, Read_data2);
+module Operand_Prep(input[4:0] Read_register1, Read_register2, Instruction_set3, input[31:0] Write_data, Instruction_set4, input RegWrite, output reg[31:0] Read_data1);
 
 reg [31:0] Register_array [0:31]; 
 
-wire [31:0] Read_data2;
+reg [31:0] Read_data2;
+reg [4:0] i;
 
-for (i=0; i<32; i++) begin
+always @(*) begin
+
+for (i=0; i<32; i = i+1) begin
 Register_array[i] <= 0;
 end
   
@@ -12,11 +15,9 @@ end
   Register_array[25] <= 15;
   Register_array[3] <= 3;
   
-always (*) begin
 
-Read_data1 <= Read_array[Read_register1];
-
-Read_data2 <= Read_array[Read_register2];
+Read_data1 <= Register_array[Read_register1];
+Read_data2 <= Register_array[Read_register2];
 
 end
 
