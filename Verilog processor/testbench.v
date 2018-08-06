@@ -78,23 +78,23 @@ Data_Cache cache_1(data, addr, inputData, writeData, readData);
 
 initial begin
 // outputs for PC unit 
-    #2 $display( "\t address of instruction: %h", PC); 
+    #2 $monitor( "\t address of instruction: %h", PC); 
 // outputs for Instruction Memory 
-    #2 $display( "\t insruction: %b", Instruction); 
+    #2 $monitor( "\t insruction: %b", Instruction); 
 // outputs for Decoder Controller 
-    #2 $display( "\t Reg2Loc:", Reg2Loc, " Uncondbranch:", Uncondbranch);
-    #2 $display( "\t Branch:", Branch, " MemRead: ", MemRead,  " MemtoReg: ", MemtoReg);
-    #2 $display( "\t MemWrite: ", MemWrite, " ALUSrc: ", ALUSrc, " RegWrite: ", RegWrite);
-    #2 $display( "\t Register 1: %d", Read_register1, "Instruction 2: %d",Instruction_set2, "Instruction 3: %d", Instruction_set3);
-    #2 $display( "\t Instruction 4: %d", Instruction_set4, "Instruction: %s", check, "Immediate: %d", Sign_extend);
+    #2 $monitor( "\t Reg2Loc:", Reg2Loc, " Uncondbranch:", Uncondbranch);
+    #2 $monitor( "\t Branch:", Branch, " MemRead: ", MemRead,  " MemtoReg: ", MemtoReg);
+    #2 $monitor( "\t MemWrite: ", MemWrite, " ALUSrc: ", ALUSrc, " RegWrite: ", RegWrite);
+    #2 $monitor( "\t Register 1: %d", Read_register1, "Instruction 2: %d",Instruction_set2, "Instruction 3: %d", Instruction_set3);
+    #2 $monitor( "\t Instruction 4: %d", Instruction_set4, "Instruction: %s", check, "Immediate: %d", Sign_extend);
 // outputs for Multiplexer1 
-    #2 $display( "\t ALU input: %d", Decoder_Mux_output); 
+    #2 $monitor( "\t ALU input: %d", Decoder_Mux_output); 
 // outputs for Operand Prep  
-    #2 $display( "\t read data 1: %d", Read_data1); 
+    #2 $monitor( "\t read data 1: %d", Read_data1); 
 // outputs for ALU 
-    #2 $display( "\t ALU Result: %d", ALU_Result, "Zero: %d", Zero);
+    #2 $monitor( "\t ALU Result: %d", ALU_Result, "Zero: %d", Zero);
 // outputs for Data Cache
-    #2 $display( "\t Read Data: %d", data); 
+    #2 $monitor( "\t Read Data: %d", data); 
 
 end
 
