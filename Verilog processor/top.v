@@ -1,7 +1,7 @@
 module top;
 
 //input for PC_unit
-reg check; 
+reg check_pc; 
 //output for PC_unit
 wire [31:0] PC;
   
