@@ -1,4 +1,4 @@
-module PC_unit(input[31:0] Sign_extend, input Branch, Uncondbranch, check, output [31:0] PC);
+module PC_unit(input[31:0] Sign_extend, input Branch, Uncondbranch, check_pc, output [31:0] PC);
 
 
 initial begin
