@@ -1,9 +1,9 @@
 module ALU(input[31:0] Read_data1, input [3:0] ALU_control, input ALUSrc, input [31:0] Sign_extend, output reg[31:0] ALU_Result, output reg Zero); 
 
+wire [31:0] Decoder_Mux_output;
+  
 always @(*)
 begin
-
-wire [31:0] Decoder_Mux_output;
 
 if (ALUSrc == 0) begin
 Decoder_Mux_output <= Read_data1;
