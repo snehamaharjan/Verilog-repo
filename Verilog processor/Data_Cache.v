@@ -45,13 +45,13 @@ always@(blockAddress, inputData, writeData, readData) begin : search
 end // always
 
 initial begin
-	setAddress[0] = 29'h00000202; setData[0] = 32'h01010101;
-	setAddress[1] = 29'h00000204; setData[1] = 32'h02020202;
-	setAddress[2] = 29'h00000206; setData[2] = 32'h03030303;
-	setAddress[3] = 29'h00000208; setData[3] = 32'h04040404;
-	setAddress[4] = 29'h0000020A; setData[4] = 32'h05050505;
-	setAddress[5] = 29'h0000020C; setData[5] = 32'h06060606;
-	setAddress[6] = 29'h0000020E; setData[6] = 32'h07070707;
+	setAddress[0] = 29'h00000005; setData[0] = 32'h00000005; 
+	setAddress[1] = 29'h00000007; setData[1] = 32'h02020202;
+	setAddress[2] = 29'h00000009; setData[2] = 32'h03030303;
+	setAddress[3] = 29'h0000000B; setData[3] = 32'h04040404;
+	setAddress[4] = 29'h0000000D; setData[4] = 32'h05050505;
+	setAddress[5] = 29'h0000000F; setData[5] = 32'h06060606;
+	setAddress[6] = 29'h00000201; setData[6] = 32'h00000000;
 	setAddress[7] = 29'h00000210; setData[7] = 32'h08080808;
 	setAddress[8] = 29'h00000201; setData[8] = 32'h99999999;
 	setAddress[9] = 29'h00000203; setData[9] = 32'hAAAAAAAA;
