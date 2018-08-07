@@ -33,5 +33,3 @@ end
 
 end
 endmodule
-
-//declare sign_extend in top
