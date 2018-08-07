@@ -3,7 +3,7 @@ module Operand_Prep( input[4:0] Read_register1, Read_register2, Instruction_set3
 reg [31:0] Write_data;
 
 reg [31:0] Register_array [0:31]; 
-reg [4:0] i;
+reg [5:0] i;
 
 initial begin 
 for (i=0; i<32; i = i+1) begin
@@ -26,12 +26,12 @@ if(i!= 31)begin
     if(RegWrite == 1'b1) begin
         if (MemtoReg== 1'b1) 
         begin
-          #1
+//          #1
           Write_data = data;
         end
         else if (MemtoReg == 1'b0)
         begin
-          #1
+//          #1
           Write_data = ALU_Result;
         end
         else
