@@ -1,9 +1,9 @@
 module Data_Cache( 
 output reg [31:0]data,  // Read data
-input [31:0]addr,    //ALU_Result 
-input [31:0]inputData,  //Write data or Read_data2
-input writeData,   //MemWrite     
-input readData     //MemRead
+input [31:0]ALU_Result,    //ALU_Result 
+input [31:0]Read_data2,  //Write data or Read_data2
+input MemWrite,   //MemWrite     
+input MemRead    //MemRead
 );
 
 reg [28:0]setAddress[0:15]; //16 lines
@@ -11,8 +11,12 @@ reg [31:0]setData[0:15];
 
 reg [6:0]i;
 wire [28:0]blockAddress = addr[31:3]; //tag and index
+wire [31:0]inputData = Read_data2; 
+wire writeData = MemWrite; 
+wire readData = MemRead;
+wire [31:0]addr = ALU_Result; 
 
-always@(blockAddress, inputData, writeData, readData) begin : search
+	always@(blockAddress, inputData, MemWrite, MemRead) begin : search
 
 	for(i = 0; i < 16; i = i + 1) begin //how many lines there are
 		if(blockAddress == setAddress[i]) begin
