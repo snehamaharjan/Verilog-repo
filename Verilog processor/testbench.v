@@ -8,7 +8,6 @@
  `include "Instruction_Memory.v"
 `include "PC_unit.v" 
 
-
 module testbench();
 
 // input/output PC
@@ -70,33 +69,24 @@ wire Check_and_Branch;
 reg clock;
 
 //Instantiate an object
-// PC_unit pc_1(Sign_extend, Branch, Uncondbranch, Zero,PC);
-// Instruction_Memory instruction_1(PC, Instruction);
-// Decoder_Controller decoder_1(Instruction,Reg2Loc, Uncondbranch, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite,ALU_control,Read_register1, Instruction_set2, Instruction_set3, Instruction_set4,check,Sign_extend);
-// Multiplexer1 multiplexer_1(Instruction_set2, Instruction_set3, Reg2Loc, Decoder_Mux_output);
-// Operand_Prep operand_1(Read_register1, Read_register2, Instruction_set3, Instruction_set4, RegWrite, MemtoReg, data,ALU_Result,Read_data1, Read_data2);
-// ALU alu_1(Read_data1, ALU_control, ALUSrc,Sign_extend,ALU_Result,Zero);
-// Data_Cache cache_1(data, addr, inputData, writeData, readData);     
+ PC_unit pc_1(Sign_extend, Branch, Uncondbranch, Zero, clock, PC);
+ Instruction_Memory instruction_1(PC, Instruction);
+ Decoder_Controller decoder_1(Instruction,Reg2Loc, Uncondbranch, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite,ALU_control,Read_register1, Instruction_set2, Instruction_set3, Instruction_set4,check,Sign_extend);
+ Multiplexer1 multiplexer_1(Instruction_set2, Instruction_set3, Reg2Loc, Decoder_Mux_output);
+ Operand_Prep operand_1(Read_register1, Read_register2, Instruction_set3, Instruction_set4, RegWrite, MemtoReg, data,ALU_Result,Read_data1, Read_data2);
+ ALU alu_1(Read_data1, ALU_control, ALUSrc,Sign_extend,ALU_Result,Zero);
+ Data_Cache cache_1(data, addr, inputData, writeData, readData);     
 
 initial begin
 // outputs for PC unit 
-    $monitor( "\t address of instruction: %h", PC); 
-// outputs for Instruction Memory 
-    $monitor( "\t insruction: %b", Instruction); 
-// outputs for Decoder Controller 
-    $monitor( "\t Reg2Loc: %b", Reg2Loc, " Uncondbranch: %b", Uncondbranch);
-    $monitor( "\t Branch: %b", Branch, " MemRead: %b", MemRead,  " MemtoReg: %b", MemtoReg);
-    $monitor( "\t MemWrite: %b ", MemWrite, " ALUSrc: %b", ALUSrc, " RegWrite: %b", RegWrite);
-    $monitor( "\t Register 1: %d", Read_register1, "Instruction 2: %d",Instruction_set2, "Instruction 3: %d", Instruction_set3);
-    $monitor( "\t Instruction 4: %d", Instruction_set4, "Instruction: %s", check, "Immediate: %d", Sign_extend);
-// outputs for Multiplexer1 
-     $monitor( "\t ALU input: %d", Decoder_Mux_output); 
-// outputs for Operand Prep  
-     $monitor( "\t read data 1: %d", Read_data1, "\t read data 2: %d",  Read_data2); 
-// outputs for ALU 
-     $monitor( "\t ALU Result: %d", ALU_Result, "Zero: %d", Zero);
-// outputs for Data Cache
-     $monitor( "\t Read Data: %d", data); 
+    $monitor( "\t address of instruction: %h", PC, "\t insruction: %b", Instruction, "\t Reg2Loc: %b", Reg2Loc, " Uncondbranch: %b", Uncondbranch, 
+    "\t Branch: %b", Branch, " MemRead: %b", MemRead,  " MemtoReg: %b", MemtoReg, 
+    "\t MemWrite: %b ", MemWrite, " ALUSrc: %b", ALUSrc, " RegWrite: %b", RegWrite, "\t Register 1: %d", Read_register1, " Instruction 2: %d",Instruction_set2,
+     " Instruction 3: %d", Instruction_set3, 
+    "\t Instruction 4: %d", Instruction_set4, " Instruction: %s", check, " Immediate: %d", Sign_extend, "\t ALU input: %d", Decoder_Mux_output, 
+    "\t read data 1: %d", Read_data1, "\t read data 2: %d",  Read_data2, 
+    "\t ALU Result: %d", ALU_Result, " Zero: %d", Zero, 
+    "\t Read Data: %d", data); 
 
 end
 
