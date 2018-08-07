@@ -2,17 +2,17 @@ module Operand_Prep(input[4:0] Read_register1, Read_register2, Instruction_set3,
 
 reg [31:0] Register_array [0:31]; 
 reg [4:0] i;
-
-always @(*) begin
-
+initial begin 
 for (i=0; i<32; i = i+1) begin
 Register_array[i] <= 0;
 end
-  
+end
+
   /*Register_array[20] <= 0; 
   Register_array[25] <= 15;
   Register_array[3] <= 3; */
   
+always @(*) begin
 
 Read_data1 <= Register_array[Read_register1];
 Read_data2 <= Register_array[Read_register2];
