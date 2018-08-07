@@ -79,13 +79,13 @@ reg clock;
 
 initial begin
 // outputs for PC unit 
-    $monitor( "\t address of instruction: %h", PC, "\t insruction: %b", Instruction, "\t Reg2Loc: %b", Reg2Loc, " Uncondbranch: %b", Uncondbranch, 
-    "\t Branch: %b", Branch, " MemRead: %b", MemRead,  " MemtoReg: %b", MemtoReg, 
-    "\t MemWrite: %b ", MemWrite, " ALUSrc: %b", ALUSrc, " RegWrite: %b", RegWrite, "\t Register 1: %d", Read_register1, " Instruction 2: %d",Instruction_set2,
-     " Instruction 3: %d", Instruction_set3, 
-    "\t Instruction 4: %d", Instruction_set4, " Instruction: %s", check, " Immediate: %d", Sign_extend, "\t ALU input: %d", Decoder_Mux_output, 
+    $monitor( "\t address of instruction: %h", PC, "\t insruction: %b", Instruction, "\t Reg2Loc: %b", Reg2Loc, "\t Uncondbranch: %b", Uncondbranch, 
+    "\t Branch: %b", Branch, "\t MemRead: %b", MemRead,  "\t MemtoReg: %b", MemtoReg, 
+    "\t MemWrite: %b ", MemWrite, "\t ALUSrc: %b", ALUSrc, "\t RegWrite: %b", RegWrite, "\t Register 1: %d", Read_register1, "\t Instruction 2: %d",Instruction_set2,
+    "\t Instruction 3: %d", Instruction_set3,  "\t Instruction 4: %d", Instruction_set4, "\t Instruction: %s", check,
+    "\t Immediate: %d", Sign_extend, "\t ALU input: %d", Decoder_Mux_output, 
     "\t read data 1: %d", Read_data1, "\t read data 2: %d",  Read_data2, 
-    "\t ALU Result: %d", ALU_Result, " Zero: %d", Zero, 
+    "\t ALU Result: %d", ALU_Result, "\t Zero: %d", Zero, 
     "\t Read Data: %d", data); 
 
 end
