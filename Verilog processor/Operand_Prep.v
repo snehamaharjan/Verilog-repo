@@ -7,7 +7,7 @@ reg [4:0] i;
 
 initial begin 
 for (i=0; i<32; i = i+1) begin
-Register_array[i] <= 0;
+Register_array[i] = 0;
 end
 
 end
@@ -18,8 +18,8 @@ end
   
 always @(*) begin
 
-  Read_data1 <= Register_array[Read_register1];
-  Read_data2 <= Register_array[Read_register2];
+  Read_data1 = Register_array[Read_register1];
+  Read_data2 = Register_array[Read_register2];
 
 if(i!= 31)begin
 
@@ -27,22 +27,22 @@ if(i!= 31)begin
         if (MemtoReg== 1'b1) 
         begin
           #1
-          Write_data <= data;
+          Write_data = data;
         end
         else if (MemtoReg == 1'b0)
         begin
           #1
-          Write_data <= ALU_Result;
+          Write_data = ALU_Result;
         end
         else
         begin
         #1
-        Write_data <= 32'bx;
+        Write_data = 32'bx;
         end
     end
     else begin
         #1
-        Write_data <= 32'bx;
+        Write_data = 32'bx;
     end
   end
 end
