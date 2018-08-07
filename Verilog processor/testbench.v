@@ -6,7 +6,7 @@
 `include "Instruction_Memory.v"
 `include "PC_unit.v"
 
-module testbench
+module testbench;
 //output for PC_unit
 wire [31:0] PC;
   
