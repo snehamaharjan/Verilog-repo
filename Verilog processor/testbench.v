@@ -6,6 +6,8 @@
 `include "Instruction_Memory.v"
 `include "PC_unit.v"
 
+`timescale 1ns/1ns
+
 module testbench;
 //output for PC_unit
 wire [31:0] PC;
