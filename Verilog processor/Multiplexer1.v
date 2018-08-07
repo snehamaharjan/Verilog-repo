@@ -1,4 +1,4 @@
-module Multiplexer1(input[4:0] Instruction_set2, Instruction_set3, input Reg2Loc, i output reg[4:0] Decoder_Mux_output);
+module Multiplexer1(input[4:0] Instruction_set2, Instruction_set3, input Reg2Loc, output reg[4:0] Decoder_Mux_output);
 
 always @(*) begin
 
