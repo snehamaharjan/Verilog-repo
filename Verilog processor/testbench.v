@@ -30,17 +30,19 @@ wire [4:0] Instruction_set2; //Instruction [20-16] that becomes Input1 for the M
 wire [4:0] Instruction_set3; //Instruction [4-0] that goes to the Write register and becomes Input2 for the MUX at the end of decoder
 wire [31:0] Instruction_set4; //Instruction [31-0] which will be manipulated as needed when passing to Sign-extend and ALU control 
 //inputs for Operand Prep (Registers and Immediate) 
-reg [4:0] Read_register2; //Output from Mux goes into read register 2
-reg [31:0] Write_data;
+wire [4:0] Read_register2; //Output from Mux goes into read register 2
+wire [31:0] Write_data;
 //outputs for Operand Prep (Registers and Immediate)
 wire [31:0] Read_data1; //vaule stored in Read_register1
 wire [31:0] Read_data2; //value stored in Read_register2
 wire [31:0] Sign_extend; //32-bit extended value
-//Inputs for ALU
-wire [4:0] Decoder_Mux_output; //MUX chooses sign extended value or Read_data2
+
+wire [4:0] Decoder_Mux_output; //MUX output to Read register 2 in Multiplexer1.v
+
 //Outputs for ALU 
 wire [31:0] ALU_Result;
 wire Zero;
+
 //Input for Data Cache
 reg [31:0] addr;//ALU_Result- Address is the ALU result
 reg [31:0] inputData; //Read_data2- Write data gets Read_data2
@@ -48,16 +50,7 @@ reg writeData;//MemWrite
 reg readData;//MemRead
 //output for Data Cache
 wire [31:0] data; 
-//input for Multiplexer1 that selects from 5-bit inputs
-reg [4:0] Input1;
-reg [4:0] Input2;
-reg Select1;
-//output for Multiplexer1 that selects from 5-bit inputs
-wire [4:0] Mux_output1;
-//input for Multiplexer2
-wire Select2;
-//output for Multiplexer2 that selects from 32-bit inputs
-wire [31:0] Mux_output2;
+
 
 wire [5*8:0] check; //specific instruction determined in the Decoder unit
 reg [31:0] add; // is the PC+4 result in the PC unit and the input1 for Multiplexer2 module
@@ -68,31 +61,33 @@ wire Check_and_Branch;
 
 reg clock;
 
+wire [5*8:0]cache_check;
+
+
 //Instantiate an object
  PC_unit pc_1(Sign_extend, Branch, Uncondbranch, Zero, clock, PC);
  Instruction_Memory instruction_1(PC, Instruction);
  Decoder_Controller decoder_1(Instruction,Reg2Loc, Uncondbranch, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite,ALU_control,Read_register1, Instruction_set2, Instruction_set3, Instruction_set4,check,Sign_extend);
  Multiplexer1 multiplexer_1(Instruction_set2, Instruction_set3, Reg2Loc, Decoder_Mux_output);
- Operand_Prep operand_1(Read_register1, Read_register2, Instruction_set3, Instruction_set4, RegWrite, MemtoReg, data,ALU_Result,Read_data1, Read_data2);
- ALU alu_1(Read_data1, ALU_control, ALUSrc,Sign_extend,ALU_Result,Zero);
- Data_Cache cache_1(data, addr, inputData, writeData, readData);     
+ Operand_Prep operand_1(Read_register1, Decoder_Mux_output, Instruction_set3, Instruction_set4, RegWrite, MemtoReg, data,ALU_Result,Read_data1, Read_data2,Write_data);
+ ALU alu_1(Read_data1, Read_data2, ALU_control, ALUSrc,Sign_extend,ALU_Result,Zero);
+ Data_Cache cache_1(data, addr, inputData, writeData, readData, cache_check);     
 
 initial begin
 // outputs for PC unit 
     $monitor( "\t address of instruction: %h", PC, "\t insruction: %b", Instruction, "\t Reg2Loc: %b", Reg2Loc, "\t Uncondbranch: %b", Uncondbranch, 
     "\t Branch: %b", Branch, "\t MemRead: %b", MemRead,  "\t MemtoReg: %b", MemtoReg, 
-    "\t MemWrite: %b ", MemWrite, "\t ALUSrc: %b", ALUSrc, "\t RegWrite: %b", RegWrite, "\t Register 1: %d", Read_register1, "\t Instruction 2: %d",Instruction_set2,
-    "\t Instruction 3: %d", Instruction_set3,  "\t Instruction 4: %d", Instruction_set4, "\t Instruction: %s", check,
-    "\t Immediate: %d", Sign_extend, "\t ALU input: %d", Decoder_Mux_output, 
-    "\t read data 1: %d", Read_data1, "\t read data 2: %d",  Read_data2, 
+    "\t MemWrite: %b ", MemWrite, "\t ALUSrc: %b", ALUSrc, "\t RegWrite: %b", RegWrite, "\t Instruction name : %s", check, "\t Register 1: %d", Read_register1, "\t Instruction 2: %d",Instruction_set2,
+    "\t Instruction 3: %d", Instruction_set3,  "\t Instruction 4: %d", Instruction_set4, "\t Decoder mux output: %d", Decoder_Mux_output ,
+    "\t\t\t\t\t\t Immediate: %b", Sign_extend, "\t read data 1: %d", Read_data1, "\t read data 2: %d",  Read_data2, 
     "\t ALU Result: %d", ALU_Result, "\t Zero: %d", Zero, 
-    "\t Read Data: %d", data); 
+    "\t Read Data: %d", data, "\t MEMORY check: %s", cache_check, "\t Write back: %d", Write_data ); 
 
 end
 
 initial begin 
 clock = 0; 
-    repeat(100)
+    repeat(20)
     begin 
     #1 clock = ~clock;
     end
