@@ -8,13 +8,13 @@ input MemRead    //MemRead
 
 reg [28:0]setAddress[0:15]; //16 lines
 reg [31:0]setData[0:15];
+wire [31:0]addr = ALU_Result; 
 
 reg [6:0]i;
 wire [28:0]blockAddress = addr[31:3]; //tag and index
 wire [31:0]inputData = Read_data2; 
 wire writeData = MemWrite; 
 wire readData = MemRead;
-wire [31:0]addr = ALU_Result; 
 
 	always@(blockAddress, inputData, MemWrite, MemRead) begin : search
 
