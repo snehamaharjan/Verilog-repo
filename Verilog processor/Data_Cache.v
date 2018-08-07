@@ -16,7 +16,7 @@ wire [31:0]inputData = Read_data2;
 wire writeData = MemWrite; 
 wire readData = MemRead;
 
-	always@(blockAddress, inputData, MemWrite, MemRead) begin : search
+	always@(blockAddress, inputData, readData, writeData) begin : search
 
 	for(i = 0; i < 16; i = i + 1) begin //how many lines there are
 		if(blockAddress == setAddress[i]) begin
