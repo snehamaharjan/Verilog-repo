@@ -1,4 +1,4 @@
-module PC_unit(input[31:0] Sign_extend, input Branch, input Uncondbranch, input Zero, output reg [31:0] PC);
+module PC_unit(input[31:0] Sign_extend, input Branch, input Uncondbranch, input Zero, input clock, output reg [31:0] PC);
 
 reg [31:0] add;
 reg [31:0] offset;
@@ -10,7 +10,7 @@ initial begin
 PC = 0;
 end
 
-always@(*) begin
+always@(posedge clock) begin
 
 add = PC + 4;
 
