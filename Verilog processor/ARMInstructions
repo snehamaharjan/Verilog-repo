@@ -80,21 +80,16 @@ ADDI R20, R20, #8	R20 = 5+8 = 13
 STUR R1, [R20, #500] 513 = 0x00000201 so we need a block address 0x0201 and R1 stores the value of R1 =5 into 0x0201 
 LDUR R5,[ R9, #1]
 STUR R17,[R21, #41]
-ADD R9,R20,R21
 AND R17,R19,R16
 ORR R12, R30, R31
 EOR R14,R29,R13
 SUB R11, R9, R24
-ADDI R22, R22, #1
 ANDI R9, R20, #1344
 ORRI R8, R21, #276
 EORI R12, R20, #50
-SUBI R7, R5, #538
 MOVZ X24, #20348
 B #-6
-B #-41
 BL #-41
 CBZ R3, #7	R3 = 5 stop from branching
-CBZ X1, #41
 CBNZ X1, #-41
 
